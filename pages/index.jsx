@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 import db from '../db.json';
 import InputAddon from '../src/components/InputAddon';
@@ -38,7 +39,7 @@ const Title = styled.div`
   }
 
   margin-bottom: 50px;
-`
+`;
 
 const BaseContainer = styled.div`
   display: flex;
@@ -62,6 +63,7 @@ const QuizHomeLink = styled.div`
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     color: #ffffff;
+    text-decoration: none;
 
     display: flex;
     align-items: center;
@@ -74,34 +76,34 @@ const QuizHomeLink = styled.div`
 
 export default function Home() {
   return (
-  <Container>
-    <BaseContainer>
-      <QuizContainer>
-        <Title>
-          <h1>Anime</h1>
-          <span>Quiz</span>
-        </Title>
+    <Container>
+      <BaseContainer>
+        <QuizContainer>
+          <Title>
+            <h1>Anime</h1>
+            <span>Quiz</span>
+          </Title>
 
-        {/* <QuizPrimaryInput placeholder="Insira seu nome" /> */}
-        <InputAddon text='ENTRAR' placeholder="Insira seu nome" />
+          {/* <QuizPrimaryInput placeholder="Insira seu nome" /> */}
+          <InputAddon text="ENTRAR" placeholder="Insira seu nome" btnType="submit" />
 
-        <QuizHomeLink>
-          <a>
-            <img src="images/github-logo.svg" />
-            Acesse meu repositório
-          </a>
-        </QuizHomeLink>
-        <QuizHomeLink>
-          <a>
-            <img src="https://svgshare.com/i/T__.svg" />
-            Confira os outros projetos
-          </a>
-        </QuizHomeLink>
-      </QuizContainer>
-    </BaseContainer>
-    <BaseContainer style={{justifyContent: 'flex-start'}}>
-      <img src='images/background.png' />
-    </BaseContainer>
-  </Container>
+          <QuizHomeLink>
+            <a href="/">
+              <img src="images/github-logo.svg" alt="" />
+              Acesse meu repositório
+            </a>
+          </QuizHomeLink>
+          <QuizHomeLink>
+            <a href="/">
+              <img src="https://svgshare.com/i/T__.svg" alt="" />
+              Confira os outros projetos
+            </a>
+          </QuizHomeLink>
+        </QuizContainer>
+      </BaseContainer>
+      <BaseContainer style={{ justifyContent: 'flex-start' }}>
+        <img src="images/background.png" alt="" />
+      </BaseContainer>
+    </Container>
   );
 }

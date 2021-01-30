@@ -1,6 +1,9 @@
+/* eslint-disable react/button-has-type */
 import React from 'react';
-import db from '../../../db.json';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
+import db from '../../../db.json';
 
 const Wrapper = styled.div`
   position: relative;
@@ -43,11 +46,38 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function InputAddon({ text, placeholder }) {
-    return (
-        <Wrapper>
-            <input type='text' placeholder={placeholder} />
-            <button>{text}</button>
-        </Wrapper>
-    );
+function InputAddon({ text, placeholder, btnType }) {
+  const router = useRouter();
+  const [name, setName] = React.useState('');
+
+  return (
+    <Wrapper>
+      <form onSubmit={(e) => {
+        e.preventDefault();
+        router.push(`/quiz?name=${name}`);
+      }}
+      >
+        <input
+          type="text"
+          placeholder={placeholder}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+        <button type={btnType} disabled={name.length < 1}>{text}</button>
+      </form>
+    </Wrapper>
+  );
 }
+
+InputAddon.propTypes = {
+  text: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  btnType: PropTypes.string,
+};
+
+InputAddon.defaultProps = {
+  btnType: 'button',
+};
+
+export default InputAddon;
